@@ -2,4 +2,12 @@
 
 == 0.0.0 (2024-05-18)
 
-* Added initial implementation.
+* 🟢 Added clip helper - Brooke Kuhlmann
+* 🟢 Added constant source helper - Brooke Kuhlmann
+* 🟢 Added loader - Brooke Kuhlmann
+* 🟢 Added method source helper - Brooke Kuhlmann
+* 🟢 Added paste helper - Brooke Kuhlmann
+* 🟢 Added project skeleton - Brooke Kuhlmann
+* 🟢 Added prompter - Brooke Kuhlmann
+* 🟢 Added register helpers and prompt singletons - Brooke Kuhlmann
+* 🟢 Added search helper - Brooke Kuhlmann
