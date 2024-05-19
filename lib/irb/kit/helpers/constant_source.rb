@@ -5,9 +5,9 @@ module IRB
     module Helpers
       # Finds constant's source location.
       class ConstantSource < IRB::HelperMethod::Base
-        description "Find a constant's source location."
+        MONIKER = :csource
 
-        def self.moniker = :csource
+        description "Find a constant's source location."
 
         def initialize object = Object
           super()

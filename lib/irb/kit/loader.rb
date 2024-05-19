@@ -18,10 +18,10 @@ module IRB
 
       attr_reader :registrar, :namespace, :all
 
-      def register_all = helpers.each { |helper| registrar.register helper.moniker, helper }
+      def register_all = helpers.each { |helper| registrar.register helper::MONIKER, helper }
 
       def register_selected(*monikers)
-        helpers.select { |helper| monikers.include? helper.moniker }
+        helpers.select { |helper| monikers.include? helper::MONIKER }
                .then { |selected| monikers.zip selected }
                .each { |moniker, helper| registrar.register moniker, helper }
       end

@@ -5,9 +5,9 @@ module IRB
     module Helpers
       # Copies input to macOS clipboard.
       class Clip < IRB::HelperMethod::Base
-        description "Copy input to macOS clipboard."
+        MONIKER = :clip
 
-        def self.moniker = :clip
+        description "Copy input to macOS clipboard."
 
         def initialize io = IO
           super()

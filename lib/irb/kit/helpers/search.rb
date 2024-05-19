@@ -5,9 +5,9 @@ module IRB
     module Helpers
       # Search an object's methods by pattern.
       class Search < IRB::HelperMethod::Base
-        description "Search an object's methods by pattern."
+        MONIKER = :search
 
-        def self.moniker = :search
+        description "Search an object's methods by pattern."
 
         def initialize regex = Regexp
           super()

@@ -16,7 +16,7 @@ RSpec.describe IRB::Kit::Loader do
                .sort
                .map { |name| namespace.const_get "#{namespace}::#{name}" }
                .each do |helper|
-                 expect(registrar).to have_received(:register).with(helper.moniker, helper)
+                 expect(registrar).to have_received(:register).with(helper::MONIKER, helper)
                end
     end
 

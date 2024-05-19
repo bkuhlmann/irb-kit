@@ -5,9 +5,9 @@ module IRB
     module Helpers
       # Pastes last entry from macOS clipboard.
       class Paste < IRB::HelperMethod::Base
-        description "Paste last entry from macOS clipboard."
+        MONIKER = :paste
 
-        def self.moniker = :paste
+        description "Paste last entry from macOS clipboard."
 
         def initialize io = IO
           super()

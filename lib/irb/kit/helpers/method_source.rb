@@ -5,9 +5,9 @@ module IRB
     module Helpers
       # Find an object method's source location.
       class MethodSource < IRB::HelperMethod::Base
-        description "Find an object method's source location."
+        MONIKER = :msource
 
-        def self.moniker = :msource
+        description "Find an object method's source location."
 
         def execute object, name
           object.method(name).source_location
