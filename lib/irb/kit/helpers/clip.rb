@@ -9,7 +9,6 @@ module IRB
 
         def self.moniker = :clip
 
-        # :nocov:
         def initialize io = IO
           super()
           @io = io
@@ -17,6 +16,8 @@ module IRB
 
         def execute(*lines)
           io.popen("pbcopy", "w") { |clipboard| clipboard.write lines.join("\n") }
+        rescue Errno::ENOENT
+          "ERROR: Unable to copy since `pbcopy` is only supported on macOS."
         end
 
         private

@@ -9,13 +9,16 @@ module IRB
 
         def self.moniker = :paste
 
-        # :nocov:
         def initialize io = IO
           super()
           @io = io
         end
 
-        def execute = io.popen "pbpaste", "r", &:read
+        def execute
+          io.popen "pbpaste", "r", &:read
+        rescue Errno::ENOENT
+          "ERROR: Unable to paste since `pbpaste` is only supported on macOS."
+        end
 
         private
 
