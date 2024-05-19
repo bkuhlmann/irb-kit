@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
     "changelog_uri" => "https://alchemists.io/projects/irb-kit/versions",
     "documentation_uri" => "https://alchemists.io/projects/irb-kit",
     "funding_uri" => "https://github.com/sponsors/bkuhlmann",
-    "label" => "Irb Kit",
+    "label" => "IRB Kit",
     "rubygems_mfa_required" => "true",
     "source_code_uri" => "https://github.com/bkuhlmann/irb-kit"
   }
