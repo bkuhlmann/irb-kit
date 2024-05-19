@@ -65,10 +65,14 @@ To use, add the following to your `~/.config/irb/irbrc` configuration (or `~/.ir
 
 [source,ruby]
 ----
-require "irb/kit"
+begin
+  require "irb/kit"
+rescue LoadError => error
+  puts "ERROR: #{error.message.capitalize}."
+end
 ----
 
-This ensures this gem is fully loaded in order to enhance {irb_link} further. To customize, read on.
+This ensures this gem is fully loaded in order to enhance {irb_link} further. Otherwise, an error is displayed if you are in a Ruby project that doesn't have this gem as a dependency. To customize, read on.
 
 === Quick Start
 
@@ -76,19 +80,25 @@ If you'd like all the bells and whistles fully enabled, add the following to you
 
 [source,ruby]
 ----
-require "irb/kit"
+begin
+  require "irb/kit"
 
-IRB::Kit.register_helpers :all
+  IRB::Kit.register_helpers :all
 
-IRB.conf[:PROMPT][:DEMO] = {
-  PROMPT_I: "[#{IRB::Kit.prompt}]> ",
-  PROMPT_N: "[#{IRB::Kit.prompt}]| ",
-  PROMPT_C: "[#{IRB::Kit.prompt}]| ",
-  PROMPT_S: "[#{IRB::Kit.prompt}]%l ",
-  RETURN: "=> %s\n"
-}
+  IRB.conf[:PROMPT] ||= {}
 
-IRB.conf[:PROMPT_MODE] = :DEMO
+  IRB.conf[:PROMPT][:DEMO] = {
+    PROMPT_I: "[#{IRB::Kit.prompt}]> ",
+    PROMPT_N: "[#{IRB::Kit.prompt}]| ",
+    PROMPT_C: "[#{IRB::Kit.prompt}]| ",
+    PROMPT_S: "[#{IRB::Kit.prompt}]%l ",
+    RETURN: "=> %s\n"
+  }
+
+  IRB.conf[:PROMPT_MODE] = :DEMO
+rescue LoadError => error
+  puts "ERROR: #{error.message.capitalize}."
+end
 ----
 
 The above enables all helpers and configures your prompt for {ruby_link}, {hanami_link}, and {rails_link} environments.
@@ -241,19 +251,23 @@ The following screenshots demonstrate what the prompt looks like in different en
 
 *Ruby (with Git)*
 
-image::https://alchemists.io/images/projects/irb-kit/screenshots/prompt-with_git.png[Screenshot,459,108,role=focal_point]
+image::https://alchemists.io/images/projects/irb-kit/screenshots/prompt-with_git.png[Screenshot,651,150,role=focal_point]
 
 *Ruby (without Git)*
 
-image::https://alchemists.io/images/projects/irb-kit/screenshots/prompt-without_git.png[Screenshot,292,116,role=focal_point]
+image::https://alchemists.io/images/projects/irb-kit/screenshots/prompt-without_git.png[Screenshot,400,146,role=focal_point]
 
-*Hanami*
+*Hanami (development)*
 
-image::https://alchemists.io/images/projects/irb-kit/screenshots/prompt-hanami.png[Screenshot,520,120,role=focal_point]
+image::https://alchemists.io/images/projects/irb-kit/screenshots/prompt-hanami-development.png[Screenshot,690,146,role=focal_point]
+
+*Hanami (production)*
+
+image::https://alchemists.io/images/projects/irb-kit/screenshots/prompt-hanami-production.png[Screenshot,910,169,role=focal_point]
 
 *Rails*
 
-image::https://alchemists.io/images/projects/irb-kit/screenshots/prompt-rails.png[Screenshot,541,137,role=focal_point]
+image::https://alchemists.io/images/projects/irb-kit/screenshots/prompt-rails.png[Screenshot,756,170,role=focal_point]
 
 == Development
 

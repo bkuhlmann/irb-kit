@@ -1,5 +1,11 @@
 = Versions
 
+== 0.1.0 (2024-05-23)
+
+* ✅ Fixed clip and paste helper code coverage and error handling - Brooke Kuhlmann
+* ✅ Fixed gem specification label - Brooke Kuhlmann
+* 🔼 Updated helper monikers as constants - Brooke Kuhlmann
+
 == 0.0.0 (2024-05-18)
 
 * 🟢 Added clip helper - Brooke Kuhlmann
