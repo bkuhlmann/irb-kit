@@ -14,7 +14,7 @@ module IRB
       end
 
       def call
-        if defined? Hanami
+        if defined?(Hanami) && defined?(Hanami::VERSION)
           details Hanami::VERSION, Hanami.app.name.delete_suffix("::App"), Hanami.env
         elsif defined? Rails
           details Rails.version, Rails.application.class.module_parent_name, Rails.env

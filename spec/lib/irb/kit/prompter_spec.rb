@@ -39,6 +39,11 @@ RSpec.describe IRB::Kit::Prompter do
       expect(prompter.call).to match(/\d+\.\d+\.\d+-(irb-kit|project)/)
     end
 
+    it "answers Ruby version when Hanami version constant isn't found" do
+      stub_const "Hanami", hanami_fake
+      expect(prompter.call).to match(/\d+\.\d+\.\d+\|(irb-kit|project)/)
+    end
+
     it "answers Ruby version, Hanami version, project name, and development environment" do
       stub_const "Hanami", hanami_fake
       stub_const "Hanami::VERSION", "1.1.1"
