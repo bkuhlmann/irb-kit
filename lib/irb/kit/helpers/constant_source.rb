@@ -9,20 +9,21 @@ module IRB
 
         description "Find a constant's source location."
 
-        def initialize object = Object
+        def initialize object = Object, delimiter: ":"
           super()
           @object = object
+          @delimiter = delimiter
         end
 
         def execute name
-          object.const_source_location name
+          object.const_source_location(name).then { |details| details.join delimiter if details }
         rescue NameError
           "ERROR: Invalid constant (#{name.inspect})."
         end
 
         private
 
-        attr_reader :object
+        attr_reader :object, :delimiter
       end
     end
   end

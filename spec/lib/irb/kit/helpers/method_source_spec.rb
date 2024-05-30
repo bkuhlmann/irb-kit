@@ -7,12 +7,7 @@ RSpec.describe IRB::Kit::Helpers::MethodSource do
 
   describe "#execute" do
     it "answers source location" do
-      expect(helper.execute(IRB, :start)).to match(
-        array_including(
-          %r(gems/irb-.*/lib/irb\.rb),
-          kind_of(Integer)
-        )
-      )
+      expect(helper.execute(IRB, :start)).to match(%r(irb\.rb:\d+))
     end
 
     it "answers name error for invalid method" do

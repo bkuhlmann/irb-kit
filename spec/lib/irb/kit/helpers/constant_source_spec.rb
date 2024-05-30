@@ -7,7 +7,7 @@ RSpec.describe IRB::Kit::Helpers::ConstantSource do
 
   describe "#execute" do
     it "answers source location" do
-      expect(helper.execute("RUBY_DESCRIPTION")).to match(array_including(/.*ruby/, 0))
+      expect(helper.execute("RUBY_DESCRIPTION")).to match(/ruby:0/)
     end
 
     it "answers name error when constant is invalid" do

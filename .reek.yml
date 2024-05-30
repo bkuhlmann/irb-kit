@@ -5,6 +5,3 @@ exclude_paths:
 detectors:
   LongParameterList:
     enabled: false
-  UtilityFunction:
-    exclude:
-      - IRB::Kit::Helpers::MethodSource#execute

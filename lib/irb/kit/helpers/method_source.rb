@@ -9,11 +9,20 @@ module IRB
 
         description "Find an object method's source location."
 
+        def initialize delimiter: ":"
+          super()
+          @delimiter = delimiter
+        end
+
         def execute object, name
-          object.method(name).source_location
+          object.method(name).source_location.then { |details| details.join delimiter if details }
         rescue NameError => error
           "ERROR: #{error.message}"
         end
+
+        private
+
+        attr_reader :delimiter
       end
     end
   end
