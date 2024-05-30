@@ -1,5 +1,12 @@
 = Versions
 
+== 0.2.0 (2024-05-30)
+
+* 🟢 Added version release notes - Brooke Kuhlmann
+* 🔼 Updated constant and method helpers to concat source and line number - Brooke Kuhlmann
+* 🔼 Updated to Ruby 3.3.2 - Brooke Kuhlmann
+* 🔁 Refactored loader private methods - Brooke Kuhlmann
+
 == 0.1.1 (2024-05-27)
 
 * ✅ Fixed gem certificate URL for secure installs - Brooke Kuhlmann

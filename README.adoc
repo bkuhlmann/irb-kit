@@ -9,6 +9,7 @@
 :rails_link: link:https://rubyonrails.org[Rails]
 :ruby_link: link:https://www.ruby-lang.org[Ruby]
 :xdg_link: link:https://alchemists.io/projects/xdg[XDG]
+:iterm_link: link:https://iterm2.com[iTerm2]
 
 = IRB Kit
 
@@ -160,11 +161,11 @@ Use this helper, short for _constant source_, to find the source location of a c
 
 [source,ruby]
 ----
-csource :RUBY_VERSION   # ["<main>", 0]
-csource "RUBY_VERSION"  # ["<main>", 0]
+csource :RUBY_DESCRIPTION   # "$HOME/.cache/frum/versions/3.3.2/bin/ruby:0"
+csource "RUBY_DESCRIPTION"  # "$HOME/.cache/frum/versions/3.3.2/bin/ruby:0"
 ----
 
-You can use a symbol or a string when looking up the source location of a constant.
+You can use a symbol or a string when looking up the source location of a constant. The output is formatted so you can use pass:[<kbd>CONTROL</kbd>] + `<click>` to immediately view the source at the exact line number in consoles like {iterm_link}.
 
 ==== `msource`
 
@@ -172,11 +173,13 @@ Use this helper, short for _method source_, to find the source location of a met
 
 [source,ruby]
 ----
-msource IRB, :start   # ["ruby/gems/3.3.0/gems/irb-1.13.1/lib/irb.rb", 893]
-msource IRB, "start"  # ["ruby/gems/3.3.0/gems/irb-1.13.1/lib/irb.rb", 893]
+msource IRB, :start   # "$HOME/.cache/frum/versions/3.3.2/lib/ruby/3.3.0/irb.rb:893"
+msource IRB, "start"  # "$HOME/.cache/frum/versions/3.3.2/lib/ruby/3.3.0/irb.rb:893"
 ----
 
-The first argument is the object you want to message while the second argument is the object's method you want to find the source code location for. You'll get an array with the path and the line number of the method's source. You can also use a symbol or string for the method.
+The first argument is the object you want to message while the second argument is the object's method you want to find the source code location for. You can also use a symbol or string for the method.
+
+The output is formatted so you can use pass:[<kbd>CONTROL</kbd>] + `<click>` to immediately view the source at the exact line number in consoles like {iterm_link}.
 
 ==== `paste`
 
