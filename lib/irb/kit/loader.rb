@@ -2,7 +2,7 @@
 
 module IRB
   module Kit
-    # Loads IRB extensions for namespace.
+    # Loads extensions for namespace.
     class Loader
       ALL = [:all].freeze
 
@@ -18,15 +18,15 @@ module IRB
 
       attr_reader :registrar, :namespace, :all
 
-      def register_all = helpers.each { |helper| registrar.register helper::MONIKER, helper }
+      def register_all = constants.each { |helper| registrar.register helper::MONIKER, helper }
 
       def register_selected(*monikers)
-        helpers.select { |helper| monikers.include? helper::MONIKER }
-               .then { |selected| monikers.zip selected }
-               .each { |moniker, helper| registrar.register moniker, helper }
+        constants.select { |helper| monikers.include? helper::MONIKER }
+                 .then { |selected| monikers.zip selected }
+                 .each { |moniker, helper| registrar.register moniker, helper }
       end
 
-      def helpers = namespace.constants.sort.map { |name| namespace.const_get name }
+      def constants = namespace.constants.sort.map { |name| namespace.const_get name }
     end
   end
 end
