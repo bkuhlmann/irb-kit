@@ -14,6 +14,7 @@ end
 Bundler.require :tools
 
 require "irb/kit"
+require "refinements"
 
 SPEC_ROOT = Pathname(__dir__).realpath.freeze
 
