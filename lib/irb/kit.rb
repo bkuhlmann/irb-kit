@@ -17,6 +17,8 @@ module IRB
       @loader ||= registry.loaders.find { |loader| loader.tag == "irb-kit" }
     end
 
+    def self.register_commands(*) = Loader.new(IRB::Command, :Commands).call(*)
+
     def self.register_helpers(*) = Loader.new(IRB::HelperMethod, :Helpers).call(*)
 
     def self.prompt = @prompt ||= Prompter.new.call

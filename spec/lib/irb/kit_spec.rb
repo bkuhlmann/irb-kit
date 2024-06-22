@@ -16,6 +16,20 @@ RSpec.describe IRB::Kit do
     end
   end
 
+  describe ".register_commands" do
+    it "loads all commands" do
+      described_class.register_commands :all
+
+      actual = IRB::Command.commands
+                           .reject { |key, _value| key.start_with? "irb" }
+                           .map { |key, _value| key }
+
+      expected = IRB::Kit::Commands.constants.map(&:downcase)
+
+      expect(actual).to eq(expected)
+    end
+  end
+
   describe ".register_helpers" do
     it "loads all helpers" do
       described_class.register_helpers :all
