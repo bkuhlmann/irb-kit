@@ -9,20 +9,16 @@ module IRB
 
         description "Paste last entry from macOS clipboard."
 
-        def initialize io = IO
+        def initialize handler: Handlers::Paster.new
           super()
-          @io = io
+          @handler = handler
         end
 
-        def execute
-          io.popen "pbpaste", "r", &:read
-        rescue Errno::ENOENT
-          "ERROR: Unable to paste since `pbpaste` is only supported on macOS."
-        end
+        def execute = handler.call
 
         private
 
-        attr_reader :io
+        attr_reader :handler
       end
     end
   end

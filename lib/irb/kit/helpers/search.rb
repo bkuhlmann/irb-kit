@@ -9,20 +9,16 @@ module IRB
 
         description "Search an object's methods by pattern."
 
-        def initialize regex = Regexp
+        def initialize handler: Handlers::Searcher.new
           super()
-          @regex = regex
+          @handler = handler
         end
 
-        def execute object, pattern
-          object.methods.grep regex.new(pattern)
-        rescue TypeError
-          "ERROR: Use only a string or regular expression for the pattern."
-        end
+        def execute(*) = handler.call(*)
 
         private
 
-        attr_reader :regex
+        attr_reader :handler
       end
     end
   end

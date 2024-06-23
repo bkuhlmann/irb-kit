@@ -9,20 +9,16 @@ module IRB
 
         description "Copy input to macOS clipboard."
 
-        def initialize io = IO
+        def initialize handler: Handlers::Clipper.new
           super()
-          @io = io
+          @handler = handler
         end
 
-        def execute(*lines)
-          io.popen("pbcopy", "w") { |clipboard| clipboard.write lines.join("\n") }
-        rescue Errno::ENOENT
-          "ERROR: Unable to copy since `pbcopy` is only supported on macOS."
-        end
+        def execute(*) = handler.call(*)
 
         private
 
-        attr_reader :io
+        attr_reader :handler
       end
     end
   end
