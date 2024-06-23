@@ -19,7 +19,7 @@ toc::[]
 
 == Features
 
-* Provides custom helpers.
+* Provides custom commands and helpers.
 * Provides dynamic prompt based on environment.
 
 == Requirements
@@ -84,6 +84,7 @@ If you'd like all the bells and whistles fully enabled, add the following to you
 begin
   require "irb/kit"
 
+  IRB::Kit.register_commands :all
   IRB::Kit.register_helpers :all
 
   IRB.conf[:PROMPT] ||= {}
@@ -102,14 +103,44 @@ rescue LoadError => error
 end
 ----
 
-The above enables all helpers and configures your prompt for {ruby_link}, {hanami_link}, and {rails_link} environments.
+The above enables all commands and helpers and configures your prompt for {ruby_link}, {hanami_link}, and {rails_link} environments.
 
 
 💡 Use of `:DEMO`, while functional, is meant to be replaced with the name of your organization or personal identity. So please ensure you replace both occurrences of `:DEMO` with your own unique identifier.
 
 === Commands
 
-At the moment, this gem does not provide any custom commands _but might in the future_. See {irb_extensions_link} documentation for further details.
+Custom command are provided for you by this gem. Each is listed below as found when using `help` within an {irb_link} console:
+
+....
+Kit
+  descendants        Show class descendants.
+....
+
+To enable all of these commands, use `IRB::Kit.register_commands :all`. This is the same as using:
+
+[source,ruby]
+----
+IRB::Kit.register_commands :descendants
+----
+
+Knowing this, you can disable all commands entirely, use only the ones you care about, or enable all of them at once. The following explains each helper in greater detail.
+
+==== `descendants`
+
+Use this command to show all descendants of a class. Example:
+
+[source,ruby]
+----
+descendants IO
+# File
+
+descendants Ractor::Error
+# Ractor::IsolationError
+# Ractor::MovedError
+# Ractor::RemoteError
+# Ractor::UnsafeError
+----
 
 === Helpers
 
@@ -118,8 +149,7 @@ Several custom helpers are provided for you by this gem. Each is listed below as
 ....
 Helper methods
   clip           Copy input to macOS clipboard.
-  csource        Find a constant's source location.
-  msource        Find an object method's source location.
+  esource        Edit the source code of a constant or method in your default editor.
   paste          Paste last entry from macOS clipboard.
   search         Search an object's methods by pattern.
 ....
@@ -128,7 +158,7 @@ To enable all of these helpers, use `IRB::Kit.register_helpers :all`. This is th
 
 [source,ruby]
 ----
-IRB::Kit.register_helpers(*%i[clip csource msource paste search])
+IRB::Kit.register_helpers(*%i[clip esource paste search])
 ----
 
 Knowing this, you can disable all helpers entirely, use only the ones you care about, or enable all of them at once. The following explains each helper in greater detail.
@@ -155,31 +185,26 @@ clip Object.new
 
 This helper accepts any number of arguments. Each is delimited by a new line for pasting into another application.
 
-==== `csource`
+==== `esource`
 
-Use this helper, short for _constant source_, to find the source location of a constant. Example:
-
-[source,ruby]
-----
-csource :RUBY_DESCRIPTION   # "$HOME/.cache/frum/versions/3.3.2/bin/ruby:0"
-csource "RUBY_DESCRIPTION"  # "$HOME/.cache/frum/versions/3.3.2/bin/ruby:0"
-----
-
-You can use a symbol or a string when looking up the source location of a constant. The output is formatted so you can use pass:[<kbd>CONTROL</kbd>] + `<click>` to immediately view the source at the exact line number in consoles like {iterm_link}.
-
-==== `msource`
-
-Use this helper, short for _method source_, to find the source location of a method. Example:
+Use this helper, short for _edit source_, to print and edit the source of a constant or method in your default editor. This assumes your have the `EDITOR` environment variable set and configured to use your favorite editor. If not, you'll get an error requiring your to update your environment accordingly. Here are a few usage examples:
 
 [source,ruby]
 ----
-msource IRB, :start   # "$HOME/.cache/frum/versions/3.3.2/lib/ruby/3.3.0/irb.rb:893"
-msource IRB, "start"  # "$HOME/.cache/frum/versions/3.3.2/lib/ruby/3.3.0/irb.rb:893"
+esource IRB, :start
+# Editing: irb-1.13.2/lib/irb.rb:893...
+
+esource IRB, "start"
+# Editing: irb-1.13.2/lib/irb.rb:893...
+
+esource "IRB::IRBRC_EXT"
+# Editing: irb-1.13.2/lib/irb/init.rb:407...
+
+esource :RUBY_DESCRIPTION
+# ERROR (invalid path): ruby.
 ----
 
-The first argument is the object you want to message while the second argument is the object's method you want to find the source code location for. You can also use a symbol or string for the method.
-
-The output is formatted so you can use pass:[<kbd>CONTROL</kbd>] + `<click>` to immediately view the source at the exact line number in consoles like {iterm_link}.
+The first argument is the constant or object you want to search for or target. The second argument is the object's method you want to find the source code location for. You can also use a symbol or string for the method.
 
 ==== `paste`
 
@@ -200,22 +225,18 @@ Use this helper to search for methods on an object. Example:
 [source,ruby]
 ----
 search Module, "protected"
-# [
-#    protected_instance_methods(*args) #<Class:Module> (Class)
-#     protected_method_defined?(*arg1) #<Class:Module> (Module)
-#             protected_methods(*args) #<Class:Module> (Object)
-# ]
+# protected_instance_methods
+# protected_method_defined?
+# protected_methods
 
 search Module, /_defined/
-# [
-#       class_variable_defined?(arg1)  #<Class:Module> (Module)
-#                const_defined?(*arg1) #<Class:Module> (Module)
-#    instance_variable_defined?(arg1)  #<Class:Module> (Kernel)
-#               method_defined?(*arg1) #<Class:Module> (Module)
-#       private_method_defined?(*arg1) #<Class:Module> (Module)
-#     protected_method_defined?(*arg1) #<Class:Module> (Module)
-#        public_method_defined?(*arg1) #<Class:Module> (Module)
-# ]
+# const_defined?
+# class_variable_defined?
+# method_defined?
+# public_method_defined?
+# private_method_defined?
+# protected_method_defined?
+# instance_variable_defined?
 ----
 
 This helper takes two arguments. The first is the object you want to search on and the second argument is the string or regular expression of the methods to search for.

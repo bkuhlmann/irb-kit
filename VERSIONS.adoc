@@ -1,5 +1,26 @@
 = Versions
 
+== 0.3.0 (2024-06-23)
+
+* ✅ Fixed method and constant source code coverage - Brooke Kuhlmann
+* 🟢 Added Refinements gem - Brooke Kuhlmann
+* 🟢 Added abstract handler - Brooke Kuhlmann
+* 🟢 Added clipper handler - Brooke Kuhlmann
+* 🟢 Added command registration - Brooke Kuhlmann
+* 🟢 Added constant editor handler - Brooke Kuhlmann
+* 🟢 Added descendants command - Brooke Kuhlmann
+* 🟢 Added descender handler - Brooke Kuhlmann
+* 🟢 Added edit source helper - Brooke Kuhlmann
+* 🟢 Added editor handler - Brooke Kuhlmann
+* 🟢 Added method editor handler - Brooke Kuhlmann
+* 🟢 Added paster handler - Brooke Kuhlmann
+* 🟢 Added searcher handler - Brooke Kuhlmann
+* 🟢 Added version release notes - Brooke Kuhlmann
+* 🔼 Updated to Caliber 0.58.0 - Brooke Kuhlmann
+* 🔼 Updated to Ruby 3.3.3 - Brooke Kuhlmann
+* ⛔️ Removed constant and method source helpers - Brooke Kuhlmann
+* 🔁 Refactored helpers to inject handlers - Brooke Kuhlmann
+
 == 0.2.0 (2024-05-30)
 
 * 🟢 Added version release notes - Brooke Kuhlmann
