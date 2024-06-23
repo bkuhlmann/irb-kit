@@ -3,6 +3,8 @@
 require "spec_helper"
 
 RSpec.describe IRB::Kit do
+  using Refinements::Array
+
   describe ".loader" do
     it "eager loads" do
       expectation = proc { described_class.loader.eager_load force: true }
@@ -18,16 +20,17 @@ RSpec.describe IRB::Kit do
     it "loads all helpers" do
       described_class.register_helpers :all
 
-      expect(IRB::HelperMethod.all_helper_methods_info).to eq(
-        [
-          {display_name: :conf, description: "Returns the current IRB context."},
-          {display_name: :clip, description: "Copy input to macOS clipboard."},
-          {display_name: :csource, description: "Find a constant's source location."},
-          {display_name: :msource, description: "Find an object method's source location."},
-          {display_name: :paste, description: "Paste last entry from macOS clipboard."},
-          {display_name: :search, description: "Search an object's methods by pattern."}
-        ]
-      )
+      actual = IRB::HelperMethod.all_helper_methods_info.pluck(:display_name).tap do |helpers|
+        helpers.delete :conf
+      end
+
+      expected = IRB::Kit::Helpers.constants.sort.map do |name|
+        # rubocop:disable Style/MethodCallWithArgsParentheses
+        IRB::Kit::Helpers.const_get(name)::MONIKER
+        # rubocop:enable Style/MethodCallWithArgsParentheses
+      end
+
+      expect(actual).to eq(expected)
     end
   end
 
