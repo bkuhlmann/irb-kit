@@ -17,26 +17,34 @@ RSpec.describe IRB::Kit do
   end
 
   describe ".register_commands" do
-    it "loads all commands" do
+    let :actual do
+      IRB::Command.commands
+                  .reject { |key, _value| key.start_with? "irb" }
+                  .map { |key, _value| key }
+    end
+
+    it "registers the maximum" do
       described_class.register_commands :all
-
-      actual = IRB::Command.commands
-                           .reject { |key, _value| key.start_with? "irb" }
-                           .map { |key, _value| key }
-
       expected = IRB::Kit::Commands.constants.map(&:downcase)
 
       expect(actual).to eq(expected)
     end
+
+    it "registers a specific command" do
+      described_class.register_commands :descendants
+      expect(actual).to contain_exactly(:descendants)
+    end
   end
 
   describe ".register_helpers" do
-    it "loads all helpers" do
-      described_class.register_helpers :all
-
-      actual = IRB::HelperMethod.all_helper_methods_info.pluck(:display_name).tap do |helpers|
+    let :actual do
+      IRB::HelperMethod.all_helper_methods_info.pluck(:display_name).tap do |helpers|
         helpers.delete :conf
       end
+    end
+
+    it "registers the maximum" do
+      described_class.register_helpers :all
 
       expected = IRB::Kit::Helpers.constants.sort.map do |name|
         # rubocop:disable Style/MethodCallWithArgsParentheses
@@ -45,6 +53,11 @@ RSpec.describe IRB::Kit do
       end
 
       expect(actual).to eq(expected)
+    end
+
+    it "registers a specific helper" do
+      described_class.register_helpers :clip
+      expect(actual).to contain_exactly(:clip)
     end
   end
 

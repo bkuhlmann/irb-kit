@@ -3,7 +3,7 @@
 module IRB
   module Kit
     # Loads extensions for namespace.
-    class Loader
+    class Register
       ALL = [:all].freeze
 
       def initialize registrar, namespace, all: ALL
@@ -12,15 +12,15 @@ module IRB
         @all = all
       end
 
-      def call(*monikers) = monikers == all ? register_all : register_selected(*monikers)
+      def call(*monikers) = monikers == all ? maximum : only(*monikers)
 
       private
 
       attr_reader :registrar, :namespace, :all
 
-      def register_all = constants.each { |helper| registrar.register helper::MONIKER, helper }
+      def maximum = constants.each { |helper| registrar.register helper::MONIKER, helper }
 
-      def register_selected(*monikers)
+      def only(*monikers)
         constants.select { |helper| monikers.include? helper::MONIKER }
                  .then { |selected| monikers.zip selected }
                  .each { |moniker, helper| registrar.register moniker, helper }
