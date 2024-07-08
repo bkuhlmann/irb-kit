@@ -1,5 +1,11 @@
 = Versions
 
+== 0.4.0 (2024-07-08)
+
+* 🔼 Updated loader as register - Brooke Kuhlmann
+* 🔼 Updated to Git Lint 8.0.0 - Brooke Kuhlmann
+* 🔼 Updated to IRB 1.14.0 - Brooke Kuhlmann
+
 == 0.3.0 (2024-06-23)
 
 * ✅ Fixed method and constant source code coverage - Brooke Kuhlmann
