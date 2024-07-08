@@ -19,7 +19,7 @@ RSpec.describe IRB::Kit do
   describe ".register_commands" do
     let :actual do
       IRB::Command.commands
-                  .reject { |key, _value| key.start_with? "irb" }
+                  .reject { |key, _value| key.match?(/(irb|cd)/) }
                   .map { |key, _value| key }
     end
 
@@ -43,6 +43,8 @@ RSpec.describe IRB::Kit do
       end
     end
 
+    before { IRB::HelperMethod.helper_methods.clear }
+
     it "registers the maximum" do
       described_class.register_helpers :all
 
@@ -55,7 +57,7 @@ RSpec.describe IRB::Kit do
       expect(actual).to eq(expected)
     end
 
-    it "registers a specific helper" do
+    it "registers specific helper" do
       described_class.register_helpers :clip
       expect(actual).to contain_exactly(:clip)
     end
