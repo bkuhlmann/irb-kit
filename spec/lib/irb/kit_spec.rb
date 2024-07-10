@@ -49,9 +49,7 @@ RSpec.describe IRB::Kit do
       described_class.register_helpers :all
 
       expected = IRB::Kit::Helpers.constants.sort.map do |name|
-        # rubocop:disable Style/MethodCallWithArgsParentheses
         IRB::Kit::Helpers.const_get(name)::MONIKER
-        # rubocop:enable Style/MethodCallWithArgsParentheses
       end
 
       expect(actual).to eq(expected)
