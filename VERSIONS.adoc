@@ -1,5 +1,12 @@
 = Versions
 
+== 0.5.0 (2024-08-11)
+
+* ✅ Fixed RuboCop Style/MethodCallWithArgsParentheses - Brooke Kuhlmann
+* 🔼 Updated to Refinements 12.7.0 - Brooke Kuhlmann
+* 🔼 Updated to Ruby 3.3.4 - Brooke Kuhlmann
+* ⛔️ Removed Guard - Brooke Kuhlmann
+
 == 0.4.0 (2024-07-08)
 
 * 🔼 Updated loader as register - Brooke Kuhlmann
