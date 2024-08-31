@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.metadata = {
     "bug_tracker_uri" => "https://github.com/bkuhlmann/irb-kit/issues",
     "changelog_uri" => "https://alchemists.io/projects/irb-kit/versions",
-    "documentation_uri" => "https://alchemists.io/projects/irb-kit",
+    "homepage_uri" => "https://alchemists.io/projects/irb-kit",
     "funding_uri" => "https://github.com/sponsors/bkuhlmann",
     "label" => "IRB Kit",
     "rubygems_mfa_required" => "true",
