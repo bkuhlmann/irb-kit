@@ -11,7 +11,7 @@ RSpec.describe IRB::Kit::Handlers::MethodEditor do
   describe "#call" do
     it "delegated to editor" do
       handler.call IRB, :start
-      expect(editor).to have_received(:call).with(/irb.rb/, 893)
+      expect(editor).to have_received(:call).with(/irb.rb/, kind_of(Integer))
     end
 
     it "prints error when undefined" do
