@@ -1,5 +1,11 @@
 = Versions
 
+== 0.7.0 (2024-10-17)
+
+* ✅ Fixed method editor handler spec to be lenient with line number - Brooke Kuhlmann
+* 🔼 Updated to Ruby 3.3.5 - Brooke Kuhlmann
+* 🔼 Updated to Zeitwerk 2.7.0 - Brooke Kuhlmann
+
 == 0.6.0 (2024-09-01)
 
 * 🟢 Added README Developer Certificate of Origin documentation - Brooke Kuhlmann
