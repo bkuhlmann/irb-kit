@@ -1,5 +1,10 @@
 = Versions
 
+== 0.8.0 (2024-11-01)
+
+* ✅ Fixed RuboCop Style/CombinableDefined issue - Brooke Kuhlmann
+* 🔼 Updated to Refinements 12.10.0 - Brooke Kuhlmann
+
 == 0.7.0 (2024-10-17)
 
 * ✅ Fixed method editor handler spec to be lenient with line number - Brooke Kuhlmann
