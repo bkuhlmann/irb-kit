@@ -11,7 +11,7 @@ RSpec.describe IRB::Kit::Handlers::ConstantEditor do
   describe "#call" do
     it "delegated to editor" do
       handler.call "IRB::IRBRC_EXT"
-      expect(editor).to have_received(:call).with(/init.rb/, 407)
+      expect(editor).to have_received(:call).with(/init.rb/, kind_of(Integer))
     end
 
     it "prints error when invalid" do

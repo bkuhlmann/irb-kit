@@ -19,7 +19,7 @@ RSpec.describe IRB::Kit do
   describe ".register_commands" do
     let :actual do
       IRB::Command.commands
-                  .reject { |key, _value| key.match?(/(irb|cd)/) }
+                  .reject { |key, _value| key.match?(/(irb|cd|copy)/) }
                   .map { |key, _value| key }
     end
 
