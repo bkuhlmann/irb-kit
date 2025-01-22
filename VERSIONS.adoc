@@ -1,5 +1,14 @@
 = Versions
 
+== 1.1.0 (2025-01-22)
+
+* 🟢 Added clip helper deprecation warning - Brooke Kuhlmann
+* 🔼 Updated to Amazing Print 1.7.0 - Brooke Kuhlmann
+* 🔼 Updated to Debug 1.10.0 - Brooke Kuhlmann
+* 🔼 Updated to Git Lint 9.0.0 - Brooke Kuhlmann
+* 🔼 Updated to IRB 1.15.0 - Brooke Kuhlmann
+* 🔼 Updated to Reek 6.4.0 - Brooke Kuhlmann
+
 == 1.0.0 (2024-12-27)
 
 * 🟢 Added version release notes - Brooke Kuhlmann
