@@ -14,7 +14,7 @@ module IRB
   # Main namespace.
   module Kit
     def self.loader registry = Zeitwerk::Registry
-      @loader ||= registry.loaders.find { |loader| loader.tag == "irb-kit" }
+      @loader ||= registry.loaders.each.find { |loader| loader.tag == "irb-kit" }
     end
 
     def self.register_commands(*) = Register.new(IRB::Command, :Commands).call(*)
