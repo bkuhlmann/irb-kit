@@ -56,8 +56,8 @@ RSpec.describe IRB::Kit do
     end
 
     it "registers specific helper" do
-      described_class.register_helpers :clip
-      expect(actual).to contain_exactly(:clip)
+      described_class.register_helpers :paste
+      expect(actual).to contain_exactly(:paste)
     end
   end
 

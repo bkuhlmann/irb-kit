@@ -149,7 +149,6 @@ Several custom helpers are provided for you by this gem. Each is listed below as
 ....
 Helper methods
   conf           Returns the current IRB context.
-  clip           Copy input to macOS clipboard. DEPRECATED.
   esource        Edit the source code of a constant or method in your default editor.
   paste          Paste last entry from macOS clipboard.
   search         Search an object's methods by pattern.
@@ -163,30 +162,6 @@ IRB::Kit.register_helpers(*%i[clip esource paste search])
 ----
 
 Knowing this, you can disable all helpers entirely, use only the ones you care about, or enable all of them at once. The following explains each helper in greater detail.
-
-==== `clip`
-
-⚠️ This helper is deprecated and _will be removed_ in the next major release. Use IRB's new `copy` helper instead.
-
-Use this helper to copy output into the macOS clipboard. Example:
-
-[source,ruby]
-----
-clip (1..3).to_a
-# 1
-# 2
-# 3
-
-clip 1, 2, 3
-# 1
-# 2
-# 3
-
-clip Object.new
-# #<Object:0x000000012a46eaf8>
-----
-
-This helper accepts any number of arguments. Each is delimited by a new line for pasting into another application.
 
 ==== `esource`
 
