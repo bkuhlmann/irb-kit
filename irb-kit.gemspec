@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = "irb-kit"
-  spec.version = "1.5.0"
+  spec.version = "2.0.0"
   spec.authors = ["Brooke Kuhlmann"]
   spec.email = ["brooke@alchemists.io"]
   spec.homepage = "https://alchemists.io/projects/irb-kit"
@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.cert_chain = [Gem.default_cert_path]
 
   spec.required_ruby_version = ">= 4.0"
-  spec.add_dependency "irb", "~> 1.15"
+  spec.add_dependency "irb", "~> 1.16"
   spec.add_dependency "zeitwerk", "~> 2.7"
 
   spec.extra_rdoc_files = Dir["README*", "LICENSE*"]
