@@ -20,7 +20,7 @@ module IRB
 
       def maximum = constants.each { |helper| registrar.register helper::MONIKER, helper }
 
-      def only(*monikers)
+      def only *monikers
         constants.select { |helper| monikers.include? helper::MONIKER }
                  .then { |selected| monikers.zip selected }
                  .each { |moniker, helper| registrar.register moniker, helper }

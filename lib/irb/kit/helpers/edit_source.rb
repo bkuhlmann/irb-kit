@@ -16,7 +16,7 @@ module IRB
           @method_handler = method_handler
         end
 
-        def execute(*arguments)
+        def execute *arguments
           case arguments
             in [name] then puts constant_handler.call(name)
             in [object, name] then puts method_handler.call(object, name)
