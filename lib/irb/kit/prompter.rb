@@ -18,7 +18,8 @@ module IRB
           details Hanami::VERSION, Hanami.app.name.delete_suffix("::App"), Hanami.env
         elsif defined? Rails
           details Rails.version, Rails.application.class.module_parent_name, Rails.env
-        else version_with_optional_project
+        else
+          version_with_optional_project
         end
       end
 
